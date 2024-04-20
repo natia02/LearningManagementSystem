@@ -13,7 +13,7 @@ This is a Django project for learning management system
     ```
 2. Navigate to the project directory: 
     ```bash
-    cd TbcDjango
+    cd LearningManagementSystem
     ```
 
 3. Create and activate a virtual environment: 
