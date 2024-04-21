@@ -1,11 +1,13 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from mainapp.models.lecturer import Lecturer
-
 
 class Subject(models.Model):
-    lecturer = models.ForeignKey(Lecturer, on_delete=models.CASCADE, verbose_name=_("Lecturer"))
+    lecturers = models.ManyToManyField(
+        to="mainapp.Lecturer",
+        related_name="subjects",
+        on_delete=models.CASCADE,
+        verbose_name=_("Lecturers"))
     title = models.CharField(max_length=100, verbose_name=_("Title"))
     short_description = models.TextField(verbose_name=_("Short Description"))
     syllabus = models.FileField(upload_to='syllabus', verbose_name=_("Syllabus"))
