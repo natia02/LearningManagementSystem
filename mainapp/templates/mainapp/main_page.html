@@ -9,15 +9,26 @@
 
         {% endblock %}
     </title>
-    <link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/list_pages.css' %}">
 </head>
 <body>
-{% block content %}
-    <a href="{% url 'login' %}">
-        <button class="login">
-            Login
-        </button>
-    </a>
-{% endblock %}
+{% include 'includes/header.html' %}
+
+    <h1>List of Faculties</h1>
+    <ul>
+        {% for faculty in faculties %}
+            <li><a href="/faculty/{{ faculty.id }}">{{ faculty.name }}</a> </li>
+        {% endfor %}
+    </ul>
+
+    <div class="paginator-container">
+        {% if faculties.has_previous %}
+            <a class="paginator" href="?page={{ faculties.previous_page_number }}">Previous</a>
+        {% endif %}
+        <span class="paginator-text">Page {{ faculties.number }} of {{ faculties.paginator.num_pages }}.</span>
+        {% if faculties.has_next %}
+            <a class="paginator" href="?page={{ faculties.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
 </body>
 </html>

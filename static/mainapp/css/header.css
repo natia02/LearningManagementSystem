@@ -1,0 +1,46 @@
+/* header.css */
+body{
+    margin: 0;
+    padding: 0;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+}
+
+
+.logo {
+    width: 80px;
+    height: 60px;
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    gap: 50px;
+}
+
+.text-navs{
+    all:unset;
+    margin-top: 16px;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.login {
+    margin-right: 10px;
+    width: 100px;
+    height: 40px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+

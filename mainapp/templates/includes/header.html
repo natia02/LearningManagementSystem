@@ -1,0 +1,11 @@
+{% load static %}
+<link rel="stylesheet" type="text/css", href="{% static 'mainapp/css/header.css' %}">
+<header class="header">
+    <nav>
+        <a href="http://127.0.0.1:8000/"><img class="logo" src="{% static 'img/logo.png' %}" alt="Logo"></a>
+        <a class="text-navs" href="/lecturers/">Professors</a>
+        <a class="text-navs" href="/subjects/">Subjects</a>
+    </nav>
+
+    <button class="login">Log in</button>
+</header>

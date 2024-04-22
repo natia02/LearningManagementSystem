@@ -6,7 +6,6 @@ class Subject(models.Model):
     lecturers = models.ManyToManyField(
         to="mainapp.Lecturer",
         related_name="subjects",
-        on_delete=models.CASCADE,
         verbose_name=_("Lecturers"))
     title = models.CharField(max_length=100, verbose_name=_("Title"))
     short_description = models.TextField(verbose_name=_("Short Description"))

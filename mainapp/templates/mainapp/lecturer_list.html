@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Professors</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/list_pages.css' %}">
+</head>
+<body>
+{% include 'includes/header.html' %}
+
+    <h1>List of professors</h1>
+    <ul>
+        {% for lecturer in lecturers %}
+            <li><a href="/lecturer/{{ lecturer.id }}">{{ lecturer.name }} {{ lecturer.surname }}</a> </li>
+        {% endfor %}
+    </ul>
+
+    <div class="paginator-container">
+        {% if lecturers.has_previous %}
+            <a class="paginator" href="?page={{ lecturers.previous_page_number }}">Previous</a>
+        {% endif %}
+        <span class="paginator-text">Page {{ lecturers.number }} of {{ lecturers.paginator.num_pages }}.</span>
+        {% if lecturers.has_next %}
+            <a class="paginator" href="?page={{ lecturers.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+</body>
+</html>
