@@ -10,7 +10,6 @@ class Student(models.Model):
         verbose_name=_("Faculty"))
     subjects = models.ManyToManyField(
         to="mainapp.Subject",
-        limit_choices_to=7,
         verbose_name=_("Subjects"))
     name = models.CharField(max_length=100, verbose_name=_("First Name"))
     surname = models.CharField(max_length=100, verbose_name=_("Last Name"))
