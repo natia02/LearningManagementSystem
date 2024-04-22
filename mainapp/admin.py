@@ -1,12 +1,12 @@
 from django.contrib import admin
 
-from mainapp.models import Lecturer
-from mainapp.models import Subject
-from mainapp.models import Faculty
-from mainapp.models import Student
-
+from .models.lecturer import Lecturer
+from .models.student import Student
+from .models.faculty import Faculty
+from .models.subject import Subject
 
 # Register your models here.
+
 
 @admin.register(Lecturer)
 class LecturerAdmin(admin.ModelAdmin):
@@ -17,9 +17,9 @@ class LecturerAdmin(admin.ModelAdmin):
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ['name', 'surname', 'email']
-    search_fields = ['name', 'surname']
-    list_filter = ['name', 'surname']
+    list_display = ['name', 'surname', 'email', 'faculty']
+    search_fields = ['name', 'surname', 'faculty']
+    list_filter = ['name', 'surname', 'faculty']
 
 
 @admin.register(Faculty)
