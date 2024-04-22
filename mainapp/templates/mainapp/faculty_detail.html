@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Faculty - {{ faculty.name }}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/detail_pages.css' %}">
+</head>
+<body>
+    {% include 'includes/header.html' %}
+    <h2>{{ faculty.name }}</h2>
+    <h3>Subjects of {{ faculty.name }}</h3>
+    {% if not subjects %}
+        <p>There are no subjects of {{ faculty.name }} in the database.</p>
+    {% endif %}
+    <ul>
+        {% for subject in subjects %}
+            <li><a href="/subject/{{ subject.id }}">{{ subject.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <h3>Professors of {{ faculty.name }}</h3>
+    {% if not lecturers %}
+        <p>There are no professors of {{ faculty.name }} in the database.</p>
+    {% endif %}
+    <ul>
+        {% for lecturer in lecturers %}
+            <li><a href="/lecturer/{{ lecturer.id }}">{{ lecturer.name }} {{ lecturer.surname }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
