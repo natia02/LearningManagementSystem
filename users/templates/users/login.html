@@ -1,0 +1,23 @@
+{#!!!!!!!!LOGIN PAGE!!!!#}
+
+{% extends 'mainapp/main_page.html' %}
+
+{% block content %}
+<h2 id="log_in">Log in</h2>
+    <form method="post" class="login_fields">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input id="username" type="text" name="username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input id="password" type="password" name="password">
+        </div>
+        <p><button type="submit" id="login_button">Login</button></p>
+    </form>
+
+    {% if invalid_credentials %}
+        <p>Invalid username or password.</p>
+    {% endif %}
+{% endblock %}

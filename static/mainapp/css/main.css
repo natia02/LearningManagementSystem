@@ -1,0 +1,24 @@
+#log_in{
+    display: table;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.login_fields{
+    display: table;
+    margin: 0 auto;
+}
+
+.form-group{
+    font-size: 20px;
+    display: block;
+    margin-top: 10px;
+}
+
+#login_button{
+    display: table;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+}

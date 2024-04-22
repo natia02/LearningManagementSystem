@@ -1,2 +1,2 @@
 from .index import *
-from .login import *
+from .choose_subjects import *
