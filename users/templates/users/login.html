@@ -1,0 +1,16 @@
+{#!!!!!!!!LOGIN PAGE!!!!#}
+
+{% extends 'mainapp/main_page.html' %}
+
+{% block content %}
+<h2 id="log_in">Log in</h2>
+    <form method="post" class="login_fields">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><button type="submit" id="login_button">Login</button></p>
+    </form>
+
+    {% if invalid_credentials %}
+        <p>Invalid username or password.</p>
+    {% endif %}
+{% endblock %}
