@@ -14,8 +14,7 @@ class Student(models.Model):
     faculty = models.ForeignKey(
         Faculty,
         on_delete=models.CASCADE,
-        verbose_name=_("Faculty"),
-        null=True)
+        verbose_name=_("Faculty"))
     subjects = models.ManyToManyField(
         Subject,
         related_name="subjects",
