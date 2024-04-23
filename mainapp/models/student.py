@@ -18,7 +18,7 @@ class Student(models.Model):
     subjects = models.ManyToManyField(
         Subject,
         related_name="subjects",
-        verbose_name=_("Subjects"))
+        verbose_name=_("Subjects"), blank=True, null=True)
     name = models.CharField(max_length=100, verbose_name=_("First Name"))
     surname = models.CharField(max_length=100, verbose_name=_("Last Name"))
     email = models.EmailField(verbose_name=_("Email"), unique=True)
