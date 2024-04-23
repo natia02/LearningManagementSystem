@@ -9,6 +9,7 @@ from django.urls import reverse, reverse_lazy
 from .forms import LoginUserForm
 from mainapp.models.student import Student
 from mainapp.models.subject import Subject
+from .forms import SubjectSelectionForm
 
 
 class LoginUser(LoginView):
@@ -37,3 +38,18 @@ def student_dashboard(request):
         student = None
         subjects = None
     return render(request, 'users/dashboard.html', {'student': student, 'subjects': subjects})
+
+
+@login_required
+def choose_subjects(request):
+    student = request.user.student
+
+    if request.method == 'POST':
+        form = SubjectSelectionForm(request.POST)
+        if form.is_valid():
+            student.subjects.set(form.cleaned_data['subjects'])
+            return redirect('student_dashboard')
+    else:
+        form = SubjectSelectionForm(initial={'subjects': student.subjects.all()})
+
+    return render(request, 'mainapp/register_subject.html', {'form': form})
