@@ -1,14 +1,25 @@
-{% extends 'mainapp/main_page.html' %}
-
-{% block title %}
-    
-{% endblock %}
-
-
-{% block content %}
-    {% if student %}
-        {{student.name}}
-        {{student.surname}}<br/>
-        {{ student.faculty}}
-    {% endif %}
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/dashboard.css' %}">
+</head>
+<body>
+{% include 'includes/header.html' %}
+    <div class="student_info">
+        {% if student %}
+            <h2>
+                Student: {{student.name}} {{student.surname}}<br/>
+            </h2>
+            <h3>Faculty: {{ student.faculty}}<br/></h3>
+            Subjects:
+            {% if subjects %}
+                {% for subject in subjects %}
+                    <li>{{ subject.title }}</li>
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
