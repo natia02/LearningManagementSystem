@@ -8,6 +8,7 @@ from django.urls import reverse, reverse_lazy
 
 from .forms import LoginUserForm
 from mainapp.models.student import Student
+from mainapp.models.subject import Subject
 
 
 class LoginUser(LoginView):
@@ -31,6 +32,8 @@ def logout_user(request):
 def student_dashboard(request):
     try:
         student = request.user.student
+        subjects = student.subjects.all()
     except ObjectDoesNotExist:
         student = None
-    return render(request, 'users/dashboard.html', {'student': student})
+        subjects = None
+    return render(request, 'users/dashboard.html', {'student': student, 'subjects': subjects})
