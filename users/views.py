@@ -9,23 +9,24 @@ from django.urls import reverse, reverse_lazy
 from .forms import LoginUserForm
 from mainapp.models.student import Student
 from mainapp.models.subject import Subject
+from .forms import SubjectSelectionForm
 
 
 class LoginUser(LoginView):
     form_class = LoginUserForm
-    template_name = 'users/login.html'
+    template_name = 'mainapp/login.html'
     extra_context = {'title': 'Login'}
 
     def form_valid(self, form):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('main_page')
+        return reverse_lazy('users:dashboard')
 
 
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect(reverse('main_page'))
+    return HttpResponseRedirect(reverse('faculties'))
 
 
 @login_required
