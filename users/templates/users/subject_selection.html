@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject Selection</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/detail_pages.css' %}">
+</head>
+<body>
+{% include 'includes/header.html' %}
+
+    <h2>Choose Your Subjects</h2>
+
+    {% if error_message %}
+    <p>{{ error_message }}</p>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% for subject in subjects %}
+        <input type="checkbox" id="subject_{{ subject.id }}" name="subjects" value="{{ subject.id }}">
+        <label for="subject_{{ subject.id }}">{{ subject.title }}</label><br>
+        {% endfor %}
+
+        <button class="choose" type="submit">Submit</button>
+    </form>
+</body>
+</html>
