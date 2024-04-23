@@ -33,7 +33,7 @@ nav {
 
 .login, .logout_button, .dashboard_button{
     margin-right: 10px;
-    width: 100px;
+    width: 150px;
     height: 40px;
     background-color: #007bff;
     color: white;
@@ -44,4 +44,6 @@ nav {
     cursor: pointer;
     text-align: center;
 }
+
+
 
