@@ -12,7 +12,7 @@ from mainapp.models.student import Student
 
 class LoginUser(LoginView):
     form_class = LoginUserForm
-    template_name = 'users/login.html'
+    template_name = 'mainapp/login.html'
     extra_context = {'title': 'Login'}
 
     def form_valid(self, form):
@@ -24,7 +24,7 @@ class LoginUser(LoginView):
 
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect(reverse('users:login'))
+    return HttpResponseRedirect(reverse('faculties'))
 
 
 @login_required
