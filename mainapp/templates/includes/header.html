@@ -1,5 +1,5 @@
 {% load static %}
-<link rel="stylesheet" type="text/css", href="{% static 'mainapp/css/header.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/header.css' %}">
 <header class="header">
     <nav>
         <a href="http://127.0.0.1:8000/"><img class="logo" src="{% static 'img/logo.png' %}" alt="Logo"></a>
@@ -19,6 +19,11 @@
         {% else %}
             Welcome {{ user.username }}
         {% endif %}
+            <a href="{% url 'users:subject_selection' %}">
+                <button class="dashboard_button">
+                    select subjects
+                </button>
+            </a>
             <a href="{% url 'users:logout' %}">
                 <button class="logout_button">
                     Logout
@@ -29,6 +34,7 @@
                     Dashboard
                 </button>
             </a>
+            
     </div>
     {% endif %}
 </header>

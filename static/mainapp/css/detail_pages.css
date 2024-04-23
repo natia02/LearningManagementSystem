@@ -22,14 +22,14 @@ li{
 a{
     all:unset;
     cursor: pointer;
-    color: blue;
+    color: red;
 }
 
 
 .choose{
     width: 90px;
     height: 40px;
-    background-color: #007bff;
+    background-color: #e41a13;
     color: white;
     border: none;
     padding: 10px 20px;
