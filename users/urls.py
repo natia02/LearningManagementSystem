@@ -9,5 +9,5 @@ app_name = 'users'
 urlpatterns = [
     path('login/', views.LoginUser.as_view(), name='login'),
     path('logout/', views.logout_user, name='logout'),
-    path('register/', views.register_user, name='register')
+    path('dashboard/', views.student_dashboard, name='dashboard'),
 ]

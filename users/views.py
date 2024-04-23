@@ -1,11 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 
 from .forms import LoginUserForm
-from .forms import RegisterUserForm
+from mainapp.models.student import Student
 
 
 class LoginUser(LoginView):
@@ -25,6 +26,7 @@ def logout_user(request):
     return HttpResponseRedirect(reverse('main_page'))
 
 
-def register_user(request):
-    form = RegisterUserForm()
-    return render(request, 'users/register.html', {'form': form})
+@login_required
+def student_dashboard(request):
+    student = request.user.student
+    return render(request, 'users/dashboard.html', {'student': student})

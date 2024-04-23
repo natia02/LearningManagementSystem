@@ -4,12 +4,18 @@ from django.utils.translation import gettext_lazy as _
 from .faculty import Faculty
 from .subject import Subject
 
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
 
 class Student(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     faculty = models.ForeignKey(
         Faculty,
         on_delete=models.CASCADE,
-        verbose_name=_("Faculty"))
+        verbose_name=_("Faculty"),
+        null=True)
     subjects = models.ManyToManyField(
         Subject,
         related_name="subjects",
