@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Faculty(models.Model):
-    subject = models.ManyToManyField(
+    subjects = models.ManyToManyField(
         to="mainapp.Subject",
         related_name='faculty',
         verbose_name=_("Subjects"))

@@ -37,3 +37,24 @@ def student_dashboard(request):
         student = None
         subjects = None
     return render(request, 'users/dashboard.html', {'student': student, 'subjects': subjects})
+
+
+@login_required
+def subject_selection(request):
+    student = request.user.student
+    faculty = student.faculty
+
+    if request.method == 'POST':
+        selected_subject_ids = request.POST.getlist('subjects')
+        selected_subjects = Subject.objects.filter(id__in=selected_subject_ids, faculty=faculty)
+        if len(selected_subjects) > 7:
+            error_message = "You can select a maximum of 7 subjects."
+            return render(request, 'users/subject_selection.html', {'error_message': error_message})
+
+        student.subjects.clear()
+        student.subjects.add(*selected_subjects)
+        return HttpResponseRedirect(reverse('users:dashboard'))
+
+    else:
+        subjects = faculty.subjects.all()
+        return render(request, 'users/subject_selection.html', {'subjects': subjects})
