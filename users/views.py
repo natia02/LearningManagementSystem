@@ -26,7 +26,7 @@ class LoginUser(LoginView):
 
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect(reverse('main_page'))
+    return HttpResponseRedirect(reverse('faculties'))
 
 
 @login_required
