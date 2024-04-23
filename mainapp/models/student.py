@@ -1,15 +1,22 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from .faculty import Faculty
+from .subject import Subject
+
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
 
 class Student(models.Model):
     faculty = models.ForeignKey(
-        to="mainapp.Faculty",
-        related_name="students",
+        Faculty,
         on_delete=models.CASCADE,
         verbose_name=_("Faculty"))
     subjects = models.ManyToManyField(
-        to="mainapp.Subject",
+        Subject,
+        related_name="subjects",
         verbose_name=_("Subjects"))
     name = models.CharField(max_length=100, verbose_name=_("First Name"))
     surname = models.CharField(max_length=100, verbose_name=_("Last Name"))
