@@ -1,0 +1,14 @@
+{% extends 'mainapp/main_page.html' %}
+
+{% block title %}
+    
+{% endblock %}
+
+
+{% block content %}
+    {% if student %}
+        {{student.name}}
+        {{student.surname}}<br/>
+        {{ student.faculty}}
+    {% endif %}
+{% endblock %}
