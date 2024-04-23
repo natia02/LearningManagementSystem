@@ -9,6 +9,7 @@
 <body>
     {% include 'includes/header.html' %}
     <h2>{{ subject.title }}</h2>
+    <p>{{ subject.short_description }}</p>
     <h3>Professors of {{ subject.title }}</h3>
     {% if not lecturers %}
         <p>There are no professors of {{ subject.title }} in the database.</p>
