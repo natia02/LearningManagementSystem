@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/detail_pages.css' %}">
+</head>
+<body>
+{% include 'includes/header.html' %}
+    <div class="student_info">
+        {% if student %}
+            <h2>
+                {{student.name}} {{student.surname}}<br/>
+            </h2>
+            <h3>Faculty: {{ student.faculty}}<br/></h3>
+            Subjects:
+            <ul>
+                {% if subjects %}
+                {% for subject in subjects %}
+                    <li>{{ subject.title }}</li>
+                {% endfor %}
+                {% endif %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
