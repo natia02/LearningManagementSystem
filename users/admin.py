@@ -1,7 +1,14 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-
 from mainapp.models.student import Student
+from django.contrib.auth.admin import UserAdmin
+from users.models import User
+
+
+class CustomUserAdmin(UserAdmin):
+    actions = ['create_student']
+
+
+admin.site.register(User, CustomUserAdmin)
 
 
 def create_student(modeladmin, request, queryset):

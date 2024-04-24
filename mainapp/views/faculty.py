@@ -15,6 +15,9 @@ def get_faculties(request):
 def get_faculty(request, faculty_id):
     faculty = get_object_or_404(Faculty, pk=faculty_id)
     subjects = faculty.subjects.all()
-    lecturers = faculty.lecturers.all()
+    lecturers = set()
+    for subject in subjects:
+        lecturers_set = subject.lecturers.all()
+        lecturers.update(lecturers_set)
     return render(request, 'mainapp/faculty_detail.html',
                   {'faculty': faculty, 'subjects': subjects, 'lecturers': lecturers})
