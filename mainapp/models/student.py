@@ -6,11 +6,12 @@ from .subject import Subject
 
 from django.contrib.auth import get_user_model
 
-User = get_user_model()
-
 
 class Student(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        verbose_name=_('User'))
     faculty = models.ForeignKey(
         Faculty,
         on_delete=models.CASCADE,
