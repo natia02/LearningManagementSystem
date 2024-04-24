@@ -27,26 +27,19 @@ This is a Django project for learning management system
     pip install -r requirements.txt
     ```
 
-5. Create database migrations: 
-    ```bash
-    python manage.py makemigrations
-    ```
-
-6. Apply database migrations: 
-    ```bash
-    python manage.py migrate
-    ```
-
-7. Create a superuser: 
+5. Create a superuser: 
     ```bash
     python manage.py createsuperuser
     ```
    and follow instructions
 
-8. Start the development server: 
+6. Start the development server: 
     ```bash
     python manage.py runserver
     ``` 
 The application should now be accessible at `http://127.0.0.1:8000/` this is the main page 
 
 From the page `http://127.0.0.1.8000/admin` you can log in as a superuser.
+
+username and passwords of registered students are email and "name123/name/" like for me, 
+it would be name123Natia

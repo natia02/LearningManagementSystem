@@ -1,11 +1,40 @@
 {% load static %}
-<link rel="stylesheet" type="text/css", href="{% static 'mainapp/css/header.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/header.css' %}">
 <header class="header">
     <nav>
         <a href="http://127.0.0.1:8000/"><img class="logo" src="{% static 'img/logo.png' %}" alt="Logo"></a>
         <a class="text-navs" href="/lecturers/">Professors</a>
         <a class="text-navs" href="/subjects/">Subjects</a>
     </nav>
-
-    <button class="login" onclick="window.location.href='http://127.0.0.1:8000/login';">Log in</button>
+    {% csrf_token %}
+    {% if not user.is_authenticated %}
+        <a href="{% url 'users:login' %}">
+            <button class="login">Log in</button>
+        </a>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <div class="user_panel">
+        {% if user.first_name %}
+            Welcome {{ user.first_name }} {{ user.last_name }}
+        {% else %}
+            Welcome {{ user.username }}
+        {% endif %}
+            <a href="{% url 'users:subject_selection' %}">
+                <button class="dashboard_button">
+                    select subjects
+                </button>
+            </a>
+            <a href="{% url 'users:logout' %}">
+                <button class="logout_button">
+                    Logout
+                </button>
+            </a>
+            <a href="{% url 'users:dashboard' %}">
+                <button class="dashboard_button">
+                    Dashboard
+                </button>
+            </a>
+            
+    </div>
+    {% endif %}
 </header>
