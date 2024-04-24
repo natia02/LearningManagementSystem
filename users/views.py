@@ -47,7 +47,7 @@ def subject_selection(request):
     if request.method == 'POST':
         selected_subject_ids = request.POST.getlist('subjects')
         selected_subjects = Subject.objects.filter(id__in=selected_subject_ids, faculty=faculty)
-        if len(selected_subjects) > 7:
+        if selected_subjects.count() > 7:
             error_message = "You can select a maximum of 7 subjects."
             return render(request, 'users/subject_selection.html', {'error_message': error_message})
 
