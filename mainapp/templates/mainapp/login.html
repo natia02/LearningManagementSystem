@@ -4,13 +4,19 @@
     <title>Login</title>
     <!-- Add Bootstrap 4 CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .custom-red {
+            background-color: #e41a13;
+        }
+   </style>
 </head>
-<body>
+<body style="background-color: rgb(220, 220, 220)">
+{% include 'includes/header.html' %}
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-5">
                 <div class="card">
-                    <div class="card-header bg-primary text-white text-center">
+                    <div class="card-header custom-red text-white text-center">
                         <h2>Log in</h2>
                     </div>
                     <div class="card-body">
@@ -27,7 +33,7 @@
                                 <input id="password" type="password" name="password" class="form-control" placeholder="Enter password" required>
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+                            <button type="submit" class="btn custom-red text-white btn-block">Log in</button>
                         </form>
                     </div>
                 </div>

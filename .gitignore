@@ -25,8 +25,3 @@ __pycache__/
 # Ignore any virtual environments
 venv/
 env/
-
-# Ignore Django migrations
-*/migrations/*
-!*/migrations/__init__.py
-db.sqlite3
