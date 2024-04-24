@@ -5,17 +5,6 @@ from .models.student import Student
 from .models.faculty import Faculty
 from .models.subject import Subject
 
-from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
-
-
-class CustomUserAdmin(UserAdmin):
-    actions = ['create_student']
-
-
-admin.site.unregister(User)
-admin.site.register(User, CustomUserAdmin)
-
 
 @admin.register(Lecturer)
 class LecturerAdmin(admin.ModelAdmin):
