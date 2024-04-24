@@ -7,7 +7,7 @@ class Subject(models.Model):
         to="mainapp.Lecturer",
         related_name="subjects",
         verbose_name=_("Lecturers"),
-        blank=True, null=True)
+        blank=True)
     title = models.CharField(max_length=100, verbose_name=_("Title"))
     short_description = models.TextField(verbose_name=_("Short Description"))
     syllabus = models.FileField(upload_to='syllabus', verbose_name=_("Syllabus"))
