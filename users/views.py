@@ -1,15 +1,14 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.core.exceptions import ObjectDoesNotExist
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 
 from .forms import LoginUserForm
 from mainapp.models.student import Student
 from mainapp.models.subject import Subject
-from .forms import SubjectSelectionForm
 
 
 class LoginUser(LoginView):
@@ -50,7 +49,7 @@ def subject_selection(request):
     if request.method == 'POST':
         selected_subject_ids = request.POST.getlist('subjects')
         selected_subjects = Subject.objects.filter(id__in=selected_subject_ids, faculty=faculty)
-        if len(selected_subjects) > 7:
+        if selected_subjects.count() > 7:
             error_message = "You can select a maximum of 7 subjects."
             return render(request, 'users/subject_selection.html', {'error_message': error_message})
 
