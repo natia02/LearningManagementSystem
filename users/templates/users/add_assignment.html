@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Assignment</title>
+</head>
+<body>
+{% include 'includes/header.html' %}
+    <h1>Add Assignment</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="id_subject">Subject:</label>
+        <select name="subject" id="id_subject">
+            {% for choice in form.subject.field.choices %}
+                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="id_description">Description:</label>
+        <textarea name="description" id="id_description"></textarea><br>
+
+        <label for="id_deadline_date">Deadline Date:</label>
+        <input type="date" name="deadline_date" id="id_deadline_date"><br>
+
+        <label for="id_deadline_time">Deadline Time:</label>
+        <input type="time" name="deadline_time" id="id_deadline_time"><br>
+
+        <button type="submit">Add Assignment</button>
+    </form>
+</body>
+</html>
