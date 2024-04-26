@@ -17,11 +17,38 @@
             Subjects:
             <ul>
                 {% if subjects %}
-                {% for subject in subjects %}
-                    <li>{{ subject.title }}</li>
-                {% endfor %}
+                    {% for subject in subjects %}
+                        <li>{{ subject.title }}</li>
+                    {% endfor %}
                 {% endif %}
             </ul>
+            Assignments:
+            <ul>
+                {% if assignments %}
+                    {% for assignment in assignments %}
+                        <li>
+                            {{ assignment.subject }}: {{ assignment.description }} - Deadline {{ assignment.deadline_date }}, {{ assignment.deadline_time }}
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        {% endif %}
+
+        {% if lecturer %}
+            <h2>
+                {{ lecturer.name }} {{ lecturer.surname }}<br/>
+            </h2>
+            <h3>
+                Your Assignments:<br/>
+            </h3>
+            <ul>
+                {% for assignment in assignments %}
+                    <li>
+                        {{ assignment.description }} - Deadline: {{ assignment.deadline_date }}, {{ assignment.deadline_time }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'users:add_assignment' %}">Add Assignment</a>
         {% endif %}
     </div>
 </body>

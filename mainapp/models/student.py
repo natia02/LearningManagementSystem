@@ -10,7 +10,7 @@ User = get_user_model()
 
 
 class Student(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     faculty = models.ForeignKey(
         Faculty,
         on_delete=models.CASCADE,
@@ -18,7 +18,17 @@ class Student(models.Model):
     subjects = models.ManyToManyField(
         Subject,
         related_name="subjects",
-        verbose_name=_("Subjects"), blank=True, null=True)
+        verbose_name=_("Subjects"),
+        blank=True)
+    assignments = models.ManyToManyField(
+        to='Assignment',
+        related_name="assignments",
+        verbose_name=_("Assignments"),
+        blank=True)
+    lecturers = models.ManyToManyField(
+        to='Lecturer',
+        related_name="lecturers",
+        verbose_name=_("Lecturers"))
     name = models.CharField(max_length=100, verbose_name=_("First Name"))
     surname = models.CharField(max_length=100, verbose_name=_("Last Name"))
     email = models.EmailField(verbose_name=_("Email"), unique=True)

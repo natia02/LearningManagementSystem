@@ -4,6 +4,25 @@ from .models.lecturer import Lecturer
 from .models.student import Student
 from .models.faculty import Faculty
 from .models.subject import Subject
+from .models.assignment import Assignment
+from .models.submitted_assignment import SubmittedAssignment
+
+
+@admin.register(SubmittedAssignment)
+class SubmittedAssignmentAdmin(admin.ModelAdmin):
+    list_display = ('student', 'submission_date')
+    search_fields = ['student', 'submission_date']
+    list_filter = ['student', 'submission_date']
+    date_hierarchy = 'submission_date'
+
+
+@admin.register(Assignment)
+class AssignmentAdmin(admin.ModelAdmin):
+    list_display = ('subject', 'lecturer', 'deadline_date')
+    search_fields = ['subject', 'lecturer', 'deadline_date']
+    list_filter = ['subject', 'lecturer', 'deadline_date']
+
+    date_hierarchy = 'deadline_date'
 
 
 @admin.register(Lecturer)
