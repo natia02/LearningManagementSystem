@@ -28,11 +28,15 @@
                     {% for assignment in assignments %}
                         <li>
                             {{ assignment.subject }}: {{ assignment.description }} - Deadline {{ assignment.deadline_date }}, {{ assignment.deadline_time }}
+                            <a href="{% url 'users:submit_assignment' assignment.id %}">
+                                <button>Submit</button>
+                            </a>
                         </li>
                     {% endfor %}
                 {% endif %}
             </ul>
         {% endif %}
+
 
         {% if lecturer %}
             <h2>
@@ -48,7 +52,22 @@
                     </li>
                 {% endfor %}
             </ul>
-            <a href="{% url 'users:add_assignment' %}">Add Assignment</a>
+            <a href="{% url 'users:add_assignment' %}">
+                <button>Add assignment</button>
+            </a>
+            <h3>
+                Submitted Assignments:
+            </h3>
+            <ul>
+                {% for submitted_assignment in submitted_assignments %}
+                    <li>
+                        {{ submitted_assignment.student }} - Submission Date: {{ submitted_assignment.submission_date }}, {{ submitted_assignment.assignment.description }}
+                        <a href="{% url 'users:view_submitted_assignments' submitted_assignment.id %}">
+                            <button>View</button>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
         {% endif %}
     </div>
 </body>

@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
+from django.utils import timezone
 
 from .forms import LoginUserForm, AssignmentForm, AssignmentSubmissionForm
 from mainapp.models.student import Student
@@ -48,7 +49,10 @@ def dashboard(request):
     elif hasattr(user, 'lecturer'):
         lecturer = user.lecturer
         assignments = Assignment.objects.filter(lecturer=lecturer)
-        return render(request, 'users/dashboard.html', {'lecturer': lecturer, 'assignments': assignments})
+        submitted_assignments = SubmittedAssignment.objects.filter(lecturer=lecturer)
+        return render(request, 'users/dashboard.html', {'lecturer': lecturer,
+                                                        'assignments': assignments,
+                                                        'submitted_assignments': submitted_assignments})
     else:
         return HttpResponseRedirect(reverse('faculties'))
 
@@ -102,17 +106,35 @@ def submit_assignment(request, assignment_id):
     user = request.user
 
     if hasattr(user, 'student'):
-        assignment = get_object_or_404(Assignment, pk=assignment_id)
-        if request.method == 'Get':
-            form = AssignmentSubmissionForm()
-            return render(request, 'users/submit_assignment.html', {'form': form})
+        assignment = Assignment.objects.get(id=assignment_id)
+        student = user.student
+        lecturer = assignment.lecturer
         if request.method == 'POST':
-            form = AssignmentForm(request.POST, request.FILES)
+            form = AssignmentSubmissionForm(request.POST, request.FILES)
             if form.is_valid():
-                submitted_assignment = form.save(commit=False)
-                submitted_assignment.student = request.user.student
-                submitted_assignment.assignment = assignment
-                submitted_assignment.save()
+                submission = form.save(commit=False)
+                submission.assignment = assignment
+                submission.student = student
+                submission.lecturer = lecturer
+                submission.save()
+
+                student.assignments.remove(assignment)
                 return redirect('users:dashboard')
+            else:
+                print(form.errors)
+        else:
+            form = AssignmentSubmissionForm()
+        return render(request, 'users/submit_assignment.html', {'form': form, 'assignment': assignment})
+    else:
+        return HttpResponseRedirect(reverse('faculties'))
+
+
+@login_required
+def view_submitted_assignments(request, submitted_assignment_id):
+    user = request.user
+
+    if hasattr(user, 'lecturer'):
+        assignment = SubmittedAssignment.objects.get(id=submitted_assignment_id)
+        return render(request, 'users/submitted_assignment_detail.html', {'assignment': assignment})
     else:
         return HttpResponseRedirect(reverse('faculties'))
