@@ -6,10 +6,8 @@
 </head>
 <body>
 {% include 'includes/header.html' %}
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Submit</button>
-    </form>
+    {{ assignment.student }}<br/>
+    {{ assignment.assignment.description }}<br/>
+    <a href="{{ assignment.file.url }}">Download file</a>
 </body>
 </html>
